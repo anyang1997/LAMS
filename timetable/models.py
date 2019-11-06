@@ -107,8 +107,12 @@ class Book(models.Model):
                + self.book_order + '  '\
                + self.book_subject
 
+    # 学期
+    book_term_name = models.ForeignKey(verbose_name='学期', default='未知学期', to='Term', to_field='term_name',
+                                       on_delete=False)
+
     # 预约人信息
-    book_order = models.CharField(verbose_name='预约人', default='未知', max_length=10)
+    book_order = models.CharField(verbose_name='预约人', default='未知预约人', max_length=10)
 
     # 课程名称
     book_subject = models.CharField(verbose_name='课程名称', default='XX课程', max_length=10)

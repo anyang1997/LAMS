@@ -49,40 +49,30 @@ def config(request):
 
 # 相关数据库操作
 
-# # 全局变量初始化
-# def init_var(total_weeks, term_name, first_day):
-#
-#     # 初始化教学周总周数
-#     if {'name': 'TOTAL_WEEKS'} in Variable.objects.values('name'):
-#         Variable.objects.filter(name='TOTAL_WEEKS').update(value=total_weeks)
-#     else:
-#         Variable.objects.create(name='TOTAL_WEEKS', value=total_weeks)
-#
-#     # 初始化学期名
-#     if {'name': 'TERM_NAME'} in Variable.objects.values('name'):
-#         Variable.objects.filter(name='TERM_NAME').update(value=term_name)
-#     else:
-#         Variable.objects.create(name='TERM_NAME', value=term_name)
-#
-#     # 初始化第一周的第一天
-#     if {'name': 'FIRST_DAY'} in Variable.objects.values('name'):
-#         Variable.objects.filter(name='FIRST_DAY').update(value=first_day)
-#     else:
-#         Variable.objects.create(name='FIRST_DAY', value=first_day)
-#
-#
-# # 初始化教学周
-# def init_term():
-#     total_weeks = int(Variable.objects.get(name='TOTAL_WEEKS').value)
-#     first_day = datetime.datetime.strptime(Variable.objects.get(name='FIRST_DAY').value, '%Y-%m-%d').date()
-#
-#     # 删除原有的教学周
-#     Term.objects.all().delete()
-#
-#     # 重新生成教学周
-#     for i in range(1, total_weeks+1):
-#         week = '第' + str(i) + '周'
-#         start = first_day + datetime.timedelta(days=(i-1)*7)
-#         end = start + datetime.timedelta(days=6)
-#         Term.objects.create(week=week, start=start, end=end)
-#
+# 新增学期
+def add_term(name, total_weeks, start_date, remark):
+    if {'term_name': name} in Term.objects.values('term_name'):
+        return False
+    else:
+        end_date = start_date + datetime.timedelta(days=(total_weeks * 7 - 1))
+        Term.objects.create(term_name=name,
+                            term_total_weeks=total_weeks,
+                            term_start_date=start_date,
+                            term_end_date=end_date,
+                            term_remark=remark
+                            )
+        return True
+
+
+# 删除学期及其下预约记录
+def delete_term(name):
+    if {'term_name': name} in Term.objects.values('term_name'):
+        Book.objects.filter(book_term_name=name).delete()
+        Term.objects.filter(term_name=name).delete()
+        return True
+    else:
+        return False
+
+
+# # 新增预约记录
+# def add_book():
