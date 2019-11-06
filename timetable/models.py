@@ -1,109 +1,129 @@
 from django.db import models
+from django.utils import timezone
+import datetime
+import locale
 
-# Create your models here.
+
+# 中文编码问题，解决Model中文显示问题
+locale.setlocale(locale.LC_CTYPE, 'chinese')
 
 
-# 全局变量
-class Variable(models.Model):
+# 学期信息，包括学期名、教学周数、起始日期、备注
+class Term(models.Model):
 
-    # 模块名称：全局变量
+    # 模块名称：学期
     class Meta:
-        verbose_name = "全局变量"
-        verbose_name_plural = "全局变量"
+        verbose_name = "学期"
+        verbose_name_plural = "学期"
 
-    # 返回变量名
+    # 返回学期名
     def __str__(self):
-        return self.name
+        return self.term_name
 
-    # 变量名
-    name = models.CharField(verbose_name='变量名', max_length=20)
+    # 学期名
+    term_name = models.CharField(verbose_name='学期名', default='XXXX-XXXX学年度第X学期', max_length=50, unique=True)
 
-    # 变量值
-    value = models.CharField(verbose_name='变量值', max_length=20)
+    # 教学周数
+    term_total_weeks = models.IntegerField(verbose_name='教学周数', default=20)
 
-    # 变量描述
-    desc = models.CharField(verbose_name='变量描述', default='None', max_length=20)
+    # 起始日期
+    term_start_date = models.DateField(verbose_name='起始日期', default=timezone.localtime)
+
+    # 结束日期
+    term_end_date = models.DateField(verbose_name='结束日期', default=timezone.localtime)
+
+    # 备注
+    term_remark = models.CharField(verbose_name='备注', default='无', max_length=100)
 
 
-# 实验室信息，包括实验室房间号、照片、位置、描述
-class Labs(models.Model):
+# 实验室信息，包括实验室名称、照片、位置、描述
+class Lab(models.Model):
 
-    # 模块名称：实验室管理
+    # 模块名称：实验室
     class Meta:
         verbose_name = "实验室"
         verbose_name_plural = "实验室"
-        ordering = ['num']
+        ordering = ['lab_num']
 
-    # 显示返回实验室编号
+    # 显示返回实验室编号、名称
     def __str__(self):
-        return self.num
+        return self.lab_num + ' ' + self.lab_name
 
     # 实验室编号
-    num = models.CharField(verbose_name='实验室编号', max_length=10)
+    lab_num = models.CharField(verbose_name='实验室编号', default='XXX', max_length=10, unique=True)
 
-    # 实验室位置
-    addr = models.CharField(verbose_name='实验室位置', max_length=10)
+    # 实验室名称
+    lab_name = models.CharField(verbose_name='实验室名称', default='XXX实验室', max_length=20)
 
     # 实验室照片
-    pic = models.ImageField(verbose_name='实验室照片', default='default.jpg', upload_to='images/labs')
+    lab_pic = models.ImageField(verbose_name='实验室照片', default='default.jpg', upload_to='images/labs')
 
     # 实验室描述
-    desc = models.CharField(verbose_name='实验室描述',default='None', max_length=50)
+    lab_desc = models.CharField(verbose_name='实验室描述', default='无', max_length=100)
 
 
-# 教学周信息，放置学期第几周对应时间
-class Term(models.Model):
+# 教学周信息，放置学期、第几周对应时间
+class Week(models.Model):
 
-    # 模块名称：学期管理
+    # 模块名称：学期
     class Meta:
         verbose_name = "教学周"
         verbose_name_plural = "教学周"
-        ordering = ['week']
+        ordering = ['week_term']
 
-    # 显示返回第几周
+    # 显示返回学期名、第几周
     def __str__(self):
-        return self.week
+        return str(self.week_term) + ' ' + str(self.week_ord)
+
+    # 学期名
+    week_term = models.ForeignKey(verbose_name='学期名', to='Term', to_field='term_name', on_delete=False)
 
     # 第几周
-    week = models.CharField(verbose_name='第几周', max_length=10)
+    week_ord = models.IntegerField(verbose_name='第几周', default='0')
 
     # 起始日期
-    start = models.DateField(verbose_name='起始日期')
+    week_start_date = models.DateField(verbose_name='起始日期', default=timezone.localtime)
 
     # 结束日期
-    end = models.DateField(verbose_name='结束日期')
+    week_end_date = models.DateField(verbose_name='结束日期', default=timezone.localtime)
+
+    # 备注
+    week_remark = models.CharField(verbose_name='备注', default='无', max_length=100)
 
 
-# Appointment模块用于存放预约信息
-class Appointment(models.Model):
+# 预约记录
+class Book(models.Model):
 
-    # 预约模块
+    # 模块名称：预约
     class Meta:
         verbose_name = "预约"
         verbose_name_plural = "预约"
-        ordering = ['day']
 
     # 前端显示
     def __str__(self):
-        return self.day.strftime('%b %d %Y ') + self.subject
+        return datetime.date.strftime(self.book_date, '%Y年%m月%d日  ')\
+               + self.book_start_time.strftime('%H:%M -')\
+               + self.book_end_time.strftime(' %H:%M  ') \
+               + self.book_order + '  '\
+               + self.book_subject
 
     # 预约人信息
-    order = models.CharField(verbose_name='预约人', max_length=10)
+    book_order = models.CharField(verbose_name='预约人', default='未知', max_length=10)
 
     # 课程名称
-    subject = models.CharField(verbose_name='课程名称', max_length=10)
+    book_subject = models.CharField(verbose_name='课程名称', default='XX课程', max_length=10)
 
     # 实验室编号
-    lab = models.CharField(verbose_name='实验室编号', max_length=10)
+    book_lab_num = models.ForeignKey(verbose_name='实验室编号', to='Lab', to_field='lab_num', on_delete=False)
 
     # 预约日期
-    day = models.DateField(verbose_name='预约日期')
+    book_date = models.DateField(verbose_name='预约日期', default=timezone.localtime)
 
     # 开始时间
-    start = models.TimeField(verbose_name='开始时间')
+    book_start_time = models.TimeField(verbose_name='开始时间', default=timezone.localtime)
 
     # 结束时间
-    end = models.TimeField(verbose_name='结束时间')
+    book_end_time = models.TimeField(verbose_name='结束时间', default=timezone.localtime)
 
     # 备注
-    remark = models.CharField(verbose_name='备注', max_length=50)
+    book_remark = models.CharField(verbose_name='备注', default='无', max_length=100)

@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+    <h1>当前预约</h1>
     {% for fa in a.all %}
-        {{ fa.day }}
-        <br>
-        {{ fa.order }}
+        {{ fa.book_order }}
+        &nbsp;
+        {{ fa.book_subject }}
+        &nbsp;
+        {{ fa.book_date }}
         <br>
     {% endfor %}
 
