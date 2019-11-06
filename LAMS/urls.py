@@ -15,9 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . import views
+from django.conf.urls.static import static
+from django.conf import settings
+
+from timetable import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', views.index),
-]
+    path('login/', views.login),
+    path('logout/', views.logout),
+    path('order/', views.order),
+    path('preview/', views.preview),
+    path('table/', views.table),
+    path('config/', views.config),
+    path('admin/', admin.site.urls),
+
+
+
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

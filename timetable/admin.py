@@ -6,3 +6,5 @@ from .models import *
 admin.site.register(Labs)
 admin.site.register(Term)
 admin.site.register(Appointment)
+admin.site.register(Variable)
+

@@ -1,7 +1,6 @@
 from django.shortcuts import render
-
+from timetable.models import Labs
 
 def index(request):
-    return_dict = dict()
-    return_dict['total_weeks'] = range(1, 20)
-    return render(request, 'index.html', return_dict)
+    lab = Labs.objects.count()
+    return render(request, 'hello.html', {'lab': lab})
