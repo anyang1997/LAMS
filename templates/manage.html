@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block manage_active %}
+class="active"
+{% endblock %}
+
+{% block content %}
+    <table class="table table-bordered table-hover table-striped">
+        <tr class="info">
+            <th>ID</th>
+            <th>学期</th>
+            <th>预约人</th>
+            <th>课程</th>
+            <th>实验室</th>
+            <th>日期</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>备注</th>
+        </tr>
+        {% for book in books %}
+            <tr>
+                <th>{{ book.id }}</th>
+                <th>{{ book.book_term_name }}</th>
+                <th>{{ book.book_order }}</th>
+                <th>{{ book.book_subject }}</th>
+                <th>{{ book.book_lab_num }}</th>
+                <th>{{ book.book_date }}</th>
+                <th>{{ book.book_start_time }}</th>
+                <th>{{ book.book_end_time }}</th>
+                <th>{{ book.book_remark }}</th>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

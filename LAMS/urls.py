@@ -21,14 +21,14 @@ from django.conf import settings
 from timetable import views
 
 urlpatterns = [
-    path('', views.index),
-    path('login/', views.login),
-    path('logout/', views.logout),
-    path('order/', views.order),
-    path('preview/', views.preview),
-    path('table/', views.table),
-    path('config/', views.config),
-    path('admin/', admin.site.urls),
+    path('', views.index, name='index'),
+    path('index/', views.index),
+    path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
+    path('changepassword/', views.changepassword, name='changepassword'),
+    path('about/', views.about, name='about'),
+    path('manage/', views.manage, name='manage'),
+    path('admin/', admin.site.urls, name='admin'),
 
 
 

@@ -69,14 +69,14 @@ class Week(models.Model):
     class Meta:
         verbose_name = "教学周"
         verbose_name_plural = "教学周"
-        ordering = ['week_term']
+        ordering = ['week_term_name']
 
     # 显示返回学期名、第几周
     def __str__(self):
-        return str(self.week_term) + ' ' + str(self.week_ord)
+        return str(self.week_term_name) + ' ' + str(self.week_ord)
 
     # 学期名
-    week_term = models.ForeignKey(verbose_name='学期名', to='Term', to_field='term_name', on_delete=False)
+    week_term_name = models.ForeignKey(verbose_name='学期名', to='Term', to_field='term_name', on_delete=False)
 
     # 第几周
     week_ord = models.IntegerField(verbose_name='第几周', default='0')
