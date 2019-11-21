@@ -3,328 +3,255 @@
 {% load staticfiles %}
 
 {% block index_active %}
-class="active"
+    class="active"
 {% endblock %}
 
 {% block content %}
-<div class="col-md-10">
-    <table class="table table-bordered table-striped table-hover text-center">
-        <caption class="caption text-center">
-            第{{ current_week }}周{{ current_room }}实验室时间安排表
-        </caption>
-        <tr class="info text-center">
-            <th colspan="2" rowspan="2" scope="col">时间/日期</th>
-            <th scope="col">{{ date_1 }}</th>
-            <th scope="col">{{ date_2 }}</th>
-            <th scope="col">{{ date_3 }}</th>
-            <th scope="col">{{ date_4 }}</th>
-            <th scope="col">{{ date_5 }}</th>
-            <th scope="col">{{ date_6 }}</th>
-            <th scope="col">{{ date_7 }}</th>
-        </tr>
-        <tr class="info">
-            <td>周一</td>
-            <td>周二</td>
-            <td>周三</td>
-            <td>周四</td>
-            <td>周五</td>
-            <td>周六</td>
-            <td>周日</td>
-        </tr>
-        <tr>
-            <th rowspan="10" scope="row">上午</th>
-            <th scope="row">8:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">8:30</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">9:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">9:30</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">10:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">10:30</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">11:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">11:30</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">12:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">12:30</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th rowspan="12" scope="row">下午</th>
-            <th scope="row">1:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">1:30</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">2:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">2:30</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">3:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">3:30</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">4:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">4:30</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">5:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">5:30</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">6:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">6:30</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th rowspan="7" scope="row">晚上</th>
-            <th scope="row">7:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">7:30</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">8:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">8:30</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">9:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">9:30</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th scope="row">10:00</th>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-    </table>
 
-</div>
+
+
+    <div class="col-md-10">
+        <div class="h3 text-center">{{ current_term }} 第{{ current_week }}周 {{ lab_num }}{{ lab_name }} 时间安排表</div>
+        <div class="cd-schedule loading">
+            <div class="timeline">
+                <ul>
+                    <li><span>08:00</span></li>
+                    <li><span>08:30</span></li>
+                    <li><span>09:00</span></li>
+                    <li><span>09:30</span></li>
+                    <li><span>10:00</span></li>
+                    <li><span>10:30</span></li>
+                    <li><span>11:00</span></li>
+                    <li><span>11:30</span></li>
+                    <li><span>12:00</span></li>
+                    <li><span>12:30</span></li>
+                    <li><span>13:00</span></li>
+                    <li><span>13:30</span></li>
+                    <li><span>14:00</span></li>
+                    <li><span>14:30</span></li>
+                    <li><span>15:00</span></li>
+                    <li><span>15:30</span></li>
+                    <li><span>16:00</span></li>
+                    <li><span>16:30</span></li>
+                    <li><span>17:00</span></li>
+                    <li><span>17:30</span></li>
+                    <li><span>18:00</span></li>
+                    <li><span>18:30</span></li>
+                    <li><span>19:00</span></li>
+                    <li><span>19:30</span></li>
+                    <li><span>20:00</span></li>
+                    <li><span>20:30</span></li>
+                    <li><span>21:00</span></li>
+                    <li><span>21:30</span></li>
+                    <li><span>22:00</span></li>
+                </ul>
+            </div>
+            <!-- .timeline -->
+            <div class="events">
+                <ul>
+                    <li class="events-group">
+                        <div class="top-info"><span>{{ date_1 }}<br><em>星期一</em></span></div>
+                        <ul>
+                            {% for book in book_date_1 %}
+                                <li class="single-event"
+                                    data-start={{ book.book_start_time }} data-end={{ book.book_end_time }}
+                                    data-content="event-1" data-event="event-1">
+                                    <a href="#0">
+                                        <em class="event-name">{{ book.book_subject }}</em>
+                                        <p class="event-info">{{ book.book_order }}</p>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+
+                    <li class="events-group">
+                        <div class="top-info"><span>{{ date_2 }}<br><em>星期二</em></span></div>
+                        <ul>
+                            {% for book in book_date_2 %}
+                                <li class="single-event"
+                                    data-start={{ book.book_start_time }} data-end={{ book.book_end_time }}
+                                    data-content="event-1" data-event="event-1">
+                                    <a href="#0">
+                                        <em class="event-name">{{ book.book_subject }}</em>
+                                        <p class="event-info">{{ book.book_order }}</p>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="events-group">
+                        <div class="top-info"><span>{{ date_3 }}<br><em>星期三</em></span></div>
+                        <ul>
+                            {% for book in book_date_3 %}
+                                <li class="single-event"
+                                    data-start={{ book.book_start_time }} data-end={{ book.book_end_time }}
+                                    data-content="event-1" data-event="event-1">
+                                    <a href="#0">
+                                        <em class="event-name">{{ book.book_subject }}</em>
+                                        <p class="event-info">{{ book.book_order }}</p>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+
+                    <li class="events-group">
+                        <div class="top-info"><span>{{ date_4 }}<br><em>星期四</em></span></div>
+                        <ul>
+                            {% for book in book_date_4 %}
+                                <li class="single-event"
+                                    data-start={{ book.book_start_time }} data-end={{ book.book_end_time }}
+                                    data-content="event-1" data-event="event-1">
+                                    <a href="#0">
+                                        <em class="event-name">{{ book.book_subject }}</em>
+                                        <p class="event-info">{{ book.book_order }}</p>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+
+                    <li class="events-group">
+                        <div class="top-info"><span>{{ date_5 }}<br><em>星期五</em></span></div>
+                        <ul>
+                            {% for book in book_date_5 %}
+                                <li class="single-event"
+                                    data-start={{ book.book_start_time }} data-end={{ book.book_end_time }}
+                                    data-content="event-1" data-event="event-1">
+                                    <a href="#0">
+                                        <em class="event-name">{{ book.book_subject }}</em>
+                                        <p class="event-info">{{ book.book_order }}</p>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+
+                    <li class="events-group">
+                        <div class="top-info"><span>{{ date_6 }}<br><em>星期六</em></span></div>
+                        <ul>
+                            {% for book in book_date_6 %}
+                                <li class="single-event"
+                                    data-start={{ book.book_start_time }} data-end={{ book.book_end_time }}
+                                    data-content="event-1" data-event="event-1">
+                                    <a href="#0">
+                                        <em class="event-name">{{ book.book_subject }}</em>
+                                        <p class="event-info">{{ book.book_order }}</p>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="events-group">
+                        <div class="top-info"><span>{{ date_7 }}<br><em>星期日</em></span></div>
+                        <ul>
+                            {% for book in book_date_7 %}
+                                <li class="single-event"
+                                    data-start={{ book.book_start_time }} data-end={{ book.book_end_time }}
+                                    data-content="event-1" data-event="event-1">
+                                    <a href="#0">
+                                        <em class="event-name">{{ book.book_subject }}</em>
+                                        <p class="event-info">{{ book.book_order }}</p>
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="event-modal">
+                <header class="header">
+                    <div class="content">
+                        <span class="event-date"></span>
+                        <h3 class="event-name"></h3>
+                        <h3 class="event-order"></h3>
+                    </div>
+
+                    <div class="header-bg"></div>
+                </header>
+
+                <div class="body">
+                    <div class="event-info">待填充区域QAQ还木有做！！ By 安阳</div>
+                    <div class="body-bg"></div>
+                </div>
+
+                <a href="#0" class="close">Close</a>
+            </div>
+
+            <div class="cover-layer"></div>
+        </div>
+        <!-- .cd-schedule -->
+    </div>
+            <br><br><br><br>
+    <div class="col-md-2">
+    <div class="form-group">
+        <form method="get" action={% url 'inquire' %} >
+        <label>选择学期</label>
+        <select name="term_name" id="term_name" class="form-control">
+            <option>请选择</option>
+            {% for term in term_list %}
+                <option value={{ term.id }}>{{ term.term_name }}</option>
+            {% endfor %}
+
+
+        </select>
+        <label>选择实验室</label>
+        <select name="lab_num" id="lab_num" class="form-control">
+        {% for lab in lab_list %}
+            <option value={{ lab.id }}>{{ lab }}</option>
+        {% endfor %}
+
+
+
+        </select>
+        <label>选择教学周</label>
+        <select name="week_ord" id="week_ord" class="form-control ">
+            <option>请先选择学期</option>
+
+
+        </select>
+        <br>
+        <button class="btn btn-info form-control" type="submit">查询</button>
+
+        </form>
+
+    </div>
+
+    {% if user.is_authenticated %}
+        <div class="form-group">
+            <form method="post" action={% url 'book' %}>
+                <label>日期</label>
+                <select name="book_date" id="book_date" class="form-control ">
+                    <option value={{ date_1 }}>{{ date_1 }}</option>
+                    <option value={{ date_2 }}>{{ date_2 }}</option>
+                    <option value={{ date_3 }}>{{ date_3 }}</option>
+                    <option value={{ date_4 }}>{{ date_4 }}</option>
+                    <option value={{ date_5 }}>{{ date_5 }}</option>
+                    <option value={{ date_6 }}>{{ date_6 }}</option>
+                    <option value={{ date_7 }}>{{ date_7 }}</option>
+                </select>
+                <label>课程</label>
+                <input type="text" class="form-control" name="subject" id="subject">
+                <label>开始时间</label>
+                <input type="time" class="form-control" name="start_time" id="start_time">
+                <label>结束时间</label>
+                <input type="time" class="form-control" name="end_time" id="end_time">
+                <label>备注</label>
+                <textarea name="remark" id="remark" class="form-control"></textarea>
+                <br>
+                <button type="submit" class="btn btn-success form-control">预约</button>
+
+
+            </form>
+
+
+
+        </div>
+        {% endif %}
+
+
+
+
+    </div>
 {% endblock %}

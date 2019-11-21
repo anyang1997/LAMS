@@ -73,7 +73,7 @@ class Week(models.Model):
 
     # 显示返回学期名、第几周
     def __str__(self):
-        return str(self.week_term_name) + ' ' + str(self.week_ord)
+        return str(self.week_term_name) + ' 第' + str(self.week_ord) + '周'
 
     # 学期名
     week_term_name = models.ForeignKey(verbose_name='学期名', to='Term', to_field='term_name', on_delete=False)

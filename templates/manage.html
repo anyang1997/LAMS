@@ -21,7 +21,7 @@ class="active"
         </tr>
         {% for book in books %}
             <tr>
-                <th>{{ book.id }}</th>
+                <td><input type="checkbox" value={{ book.id }}></td>
                 <th>{{ book.book_term_name }}</th>
                 <th>{{ book.book_order }}</th>
                 <th>{{ book.book_subject }}</th>

@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.staticfiles.views import serve
 
 from timetable import views
 
@@ -28,8 +29,11 @@ urlpatterns = [
     path('changepassword/', views.changepassword, name='changepassword'),
     path('about/', views.about, name='about'),
     path('manage/', views.manage, name='manage'),
+    path('inquire/', views.inquire, name='inquire'),
+    path('book/', views.book, name='book'),
+    path('get_week_ord/', views.get_week_ord, name='get_week_ord'),
     path('admin/', admin.site.urls, name='admin'),
-
+    path('favicon.ico', serve, {'path': 'images/favicon.ico'}),
 
 
 
