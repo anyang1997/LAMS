@@ -221,6 +221,15 @@
     {% if user.is_authenticated %}
         <div class="form-group">
             <form method="post" action={% url 'book' %}>
+                <label>学期</label>
+                <input type="text" name="term_name" class="form-control" value={{ current_term }} readonly>
+                <label>预约人</label>
+                <input type="text" name="order_name" class="form-control" value={{ user.first_name }} readonly>
+                <label>实验室编号</label>
+                <input type="text" name="lab_num" class="form-control" value={{ lab_num }} readonly>
+                <label>课程</label>
+                <input type="text" class="form-control" name="subject" id="subject">
+
                 <label>日期</label>
                 <select name="book_date" id="book_date" class="form-control ">
                     <option value={{ date_1 }}>{{ date_1 }}</option>
@@ -231,18 +240,16 @@
                     <option value={{ date_6 }}>{{ date_6 }}</option>
                     <option value={{ date_7 }}>{{ date_7 }}</option>
                 </select>
-                <label>课程</label>
-                <input type="text" class="form-control" name="subject" id="subject">
+
                 <label>开始时间</label>
                 <input type="time" class="form-control" name="start_time" id="start_time">
                 <label>结束时间</label>
                 <input type="time" class="form-control" name="end_time" id="end_time">
                 <label>备注</label>
                 <textarea name="remark" id="remark" class="form-control"></textarea>
+                {% csrf_token %}
                 <br>
                 <button type="submit" class="btn btn-success form-control">预约</button>
-
-
             </form>
 
 

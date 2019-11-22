@@ -2,6 +2,7 @@ from django.shortcuts import *
 from django.contrib import auth
 from django.http import *
 import datetime
+import time
 
 from .models import *
 
@@ -32,7 +33,7 @@ def index(request):
     for i in range(1, 8):
         book_date = 'book_date_' + str(i)
         date_week = current_monday + datetime.timedelta(days=(i-1))
-        book = book_list.filter(book_date=date_week).all()
+        book = book_list.filter(book_date=date_week).filter(book_lab_num=lab_num).all()
         context.update({book_date: book})
 
 
@@ -85,7 +86,12 @@ def about(request):
 def manage(request):
     # init_week()
     context = {'datetime': datetime.datetime.now()}
-    books = Book.objects.all()
+    if request.user.is_superuser:
+        books = Book.objects.all()
+    elif request.user.is_authenticated:
+        books = Book.objects.filter(book_order=request.user.first_name).all()
+    else:
+        books = None
     context.update({'books': books})
     return render(request, 'manage.html', context)
 
@@ -127,7 +133,7 @@ def inquire(request):
         for i in range(1, 8):
             book_date = 'book_date_' + str(i)
             date_week = current_monday + datetime.timedelta(days=(i - 1))
-            book = book_list.filter(book_date=date_week, book_term_name=current_term).all()
+            book = book_list.filter(book_date=date_week).filter(book_lab_num=lab_num).all()
             context.update({book_date: book})
 
         # 查询模块
@@ -154,8 +160,39 @@ def get_week_ord(request):
 
 
 def book(request):
-    return
+    if request.method == 'POST':
+        term_name = request.POST.get('term_name')
+        order = request.POST.get('order_name')
+        lab_num = request.POST.get('lab_num')
+        subject = request.POST.get('subject')
+        date_t = request.POST.get('book_date')
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
+        remark = request.POST.get('remark')
 
+        date = str(date_t).replace('年', '-').replace('月', '-').replace('日', '')
+        if add_book(term_name=term_name,
+                    order=order,
+                    subject=subject,
+                    lab_num=lab_num,
+                    date=date,
+                    start_time=start_time,
+                    end_time=end_time,
+                    remark=remark):
+            print("ADD BOOK SUCCESS!")
+        else:
+            print("FAILED")
+    return redirect('/manage', {'script': "alert", 'wrong': '账号错误'})
+
+
+def delete(request):
+    if request.method == 'POST':
+        for id in request.POST:
+            if id == 'csrfmiddlewaretoken':
+                print('CSRF TOKEN:')
+            else:
+                Book.objects.filter(id=id).delete()
+    return redirect('/manage')
 
 
 
@@ -213,26 +250,30 @@ def delete_term(term_name):
 
 # 新增预约记录
 def add_book(term_name, order, subject, lab_num, date, start_time, end_time, remark):
-    book_list = Book.objects.filter(book_term_name=term_name, book_lab_num=lab_num)
-    for book in book_list:
-        if book_list.book_start_time in range(start_time, end_time)\
-                or book_list.book_end_time in range(start_time, end_time):
-            return False
-        else:
-            Book.objects.create(book_term_name=term_name,
-                                book_order=order,
-                                book_subject=subject,
-                                book_lab_num=lab_num,
-                                book_date=date,
-                                book_start_time=start_time,
-                                book_end_time=end_time,
-                                book_remark=remark)
-            return True
 
+    book_list = Book.objects.filter(book_term_name=term_name).filter(book_lab_num=lab_num).filter(book_date=date).all()
 
-# 删除预约记录
-def delete_book(book_id, order):
-    return
+    s = datetime.datetime.strptime(start_time, '%H:%M')
+    e = datetime.datetime.strptime(end_time, '%H:%M')
+
+    # for book in book_list:
+    #     print(book.book_start_time)
+    #     if s < book.book_start_time < e or\
+    #             s < book.book_end_time < e:
+    #         return False
+
+    term = Term.objects.get(term_name=term_name)
+    lab = Lab.objects.get(lab_num=lab_num)
+    Book.objects.create(book_term_name=term,
+                        book_order=order,
+                        book_subject=subject,
+                        book_lab_num=lab,
+                        book_date=date,
+                        book_start_time=start_time,
+                        book_end_time=end_time,
+                        book_remark=remark)
+    return True
+
 
 
 # 根据学期信息生成教学周表

@@ -7,6 +7,8 @@ class="active"
 {% endblock %}
 
 {% block content %}
+    <script>{{script}}({{wrong}})</script>
+    <form method="post" action={% url 'delete' %}>
     <table class="table table-bordered table-hover table-striped">
         <tr class="info">
             <th>ID</th>
@@ -21,7 +23,7 @@ class="active"
         </tr>
         {% for book in books %}
             <tr>
-                <td><input type="checkbox" value={{ book.id }}></td>
+                <td><input type="checkbox" name={{ book.id }}></td>
                 <th>{{ book.book_term_name }}</th>
                 <th>{{ book.book_order }}</th>
                 <th>{{ book.book_subject }}</th>
@@ -33,5 +35,8 @@ class="active"
             </tr>
         {% endfor %}
     </table>
+    <button type="submit" class="col-md-2 col-md-offset-5 btn btn-danger">删除选中预约</button>
+    {% csrf_token %}
+    </form>
 
 {% endblock %}
