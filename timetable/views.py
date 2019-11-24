@@ -80,7 +80,7 @@ def changepassword(request):
     return
 
 def about(request):
-    return
+    return render(request, 'about.html')
 
 
 def manage(request):
@@ -182,7 +182,7 @@ def book(request):
             print("ADD BOOK SUCCESS!")
         else:
             print("FAILED")
-    return redirect('/manage', {'script': "alert", 'wrong': '账号错误'})
+    return redirect('/manage')
 
 
 def delete(request):

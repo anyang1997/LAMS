@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block about_active %}
+    class="active"
+{% endblock %}
+
+{% block content %}
+    <div class="col-md-10">
+    <h3>关于本站</h3>
+        <hr />
+    <p class="text-center">本网站前端使用jQuery和BootStrap框架，后端采用Django+SQLite3数据库。</p>
+
+
+    <h3>关于作者</h3>
+        <hr />
+    <p class="text-center">
+        本作品系学院沈冰夏老师《Web应用开发》课程下指导的实验作业。<br>
+        小组成员：安阳、苏永琪、范培文 <br>
+        临时展示版本，版本号v0.1 <br>
+        目前功能 <em class="bg-danger text-danger">非常不完善</em>。
+    </div>
+    <div class="col-md-2">
+        <img src="/static/images/photo.jpg" alt="作者照片丢失" class="img-responsive center-block">
+
+    </p>
+
+
+
+    </div>
+
+{% endblock %}
